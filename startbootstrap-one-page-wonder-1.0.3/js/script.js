@@ -39,8 +39,8 @@ $(document).ready(function(){
       }
       callback(null, data);
       $('.token').val(data.user.token);
-      game.token = data.user.token;
-      $('.gameboard').show("slow");
+      token = data.user.token;
+
     };
     e.preventDefault();
     on_tap_api.login(credentials, cb);

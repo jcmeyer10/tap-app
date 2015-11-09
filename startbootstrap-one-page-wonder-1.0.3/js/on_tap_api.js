@@ -28,6 +28,7 @@ var on_tap_api = {
       data: JSON.stringify(credentials),
       dataType: 'json'
     }, callback);
+    console.log("success")
   },
 }
 
@@ -57,13 +58,13 @@ var on_tap_api = {
 
 //   });
 
-//   $('imaginary_container').on('submit', function(event){
-//     $.ajax({
-//       method: 'GET',
-//       url: 'http://localhost:3000/locations'
-//       contentType: 'application/json; charset=utf-8',
-//       data: JSON.stringify(credentials),
-//       dataType: 'json'
-//     }, callback);
-//     })
+  $('imaginary_container').on('submit', function(event){
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:3000/locations',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(credentials),
+      dataType: 'json'
+    }, callback);
+    })
 //   });
