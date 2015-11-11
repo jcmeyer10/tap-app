@@ -19,7 +19,9 @@ body {
     -o-background-size: cover;
 }
 
-#
+#top-row {
+    display: inline-block;
+}
 #imaginary_container{
     margin-top:20%; /* Don't copy this */
 }

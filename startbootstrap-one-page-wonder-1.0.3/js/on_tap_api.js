@@ -1,8 +1,7 @@
-'use strict';
-var on_tap_api = {
-  url: 'http://localhost:3000',
+  var on_tap_api = {
+    url: 'http://localhost:3000',
 
-  ajax: function(config, cb) {
+  ajax: function (config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
       cb(null, data);
     }).fail(function(jqxhr, status, error) {
@@ -10,7 +9,7 @@ var on_tap_api = {
     });
   },
 
-  register: function register(credentials, callback) {
+  register: function (credentials, callback) {
     this.ajax({
       method: 'POST',
       url: this.url + '/register',
@@ -21,7 +20,7 @@ var on_tap_api = {
     console.log("success")
   },
 
-  login: function login(credentials, callback) {
+  login: function (credentials, callback) {
     this.ajax({
       method: 'POST',
       url: this.url + '/login',
@@ -29,20 +28,45 @@ var on_tap_api = {
       data: JSON.stringify(credentials),
       dataType: 'json'
     }, callback);
-    console.log("success")
-  },
-}
+      console.log("success")
+    },
 
-  $('imaginary_container').on('submit', function(event){
-    $.ajax({
-      method: 'GET',
-      url: 'http://localhost:3000/locations',
-      contentType: 'application/json; charset=utf-8',
-      data: JSON.stringify(credentials),
+
+  logout: function (token, id, callback) {
+    this.ajax({
+      method: 'DELETE',
+      url: this.url + '/logout/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json',
       dataType: 'json'
     }, callback);
-  })
+      console.log("success")
+  },
 
+  beers: function (token, id, callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.url + '/beers',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json'
+    }, callback);
+  }
+};
+
+  //   $('imaginary_container').on('submit', function(event){
+  //   $.ajax({
+  //     method: 'POST',
+  //     url: 'http://localhost:3000/beers',
+  //     contentType: 'application/json; charset=utf-8',
+  //     data: JSON.stringify(location),
+  //     dataType: 'json'
+  //   }, callback);
+  // })
 //   // Do this when the page loads
 //   console.log('page loaded');
 
@@ -67,5 +91,5 @@ var on_tap_api = {
 //       dataType: 'json'
 //     }, callback);
 
-//   });
-//   });
+  //     });
+  // });

@@ -39,10 +39,33 @@ $(document).ready(function(){
       }
       callback(null, data);
       $('.token').val(data.user.token);
-      token = data.user.token;
+      $('.id').val(data.user.id);
+      console.log(data.user.token);
 
     };
     e.preventDefault();
     on_tap_api.login(credentials, cb);
   });
+
+  $('.logout').on('click', function(e){
+    var token = $('.token').val();
+    var id = $('.id').val();
+    var cb = function cb(error, data) {
+      if (error) {
+        callback(error);
+        return;
+      }
+    }
+    on_tap_api.logout(token, id, cb)
+  });
+
 });
+
+  // $('#get-beers').on('click', function(e){
+  //   on_tap_api.beers;
+  // })
+  // var cb = function cb(error, data) {
+  //     if (error) {
+  //       callback(error);
+  //       return;
+  // });
