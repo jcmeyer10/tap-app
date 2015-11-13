@@ -156,16 +156,19 @@ $(document).ready(function(){
           // create location options for beer select (in html)
           console.log("get_locations returned ", data);
           $.each(data.locations, function(index, element){
-            $('#beer-list').append(element.name);
+            $('#location-list').append(element.name);
           })
         }
       });
     });
   });
-});
 
-  // TODO: create event handler that creates tap (which will
+
+// TODO: create event handler that creates tap (which will
   //       be the submit handler for the form), that takes
   //       beer_id and location_id that are selected and
   //       creates tap in back end
+
+
+}); // End of Document Ready
 
