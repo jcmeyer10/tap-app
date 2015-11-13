@@ -138,26 +138,31 @@ $(document).ready(function(){
     $("#create-taps").on('submit', function(e) {
       e.preventDefault();
       var token = $('.token').val();
-
+      var data = [];
       on_tap_api.get_beers(token, function(err, data) {
         if (err) {
           console.log(err);
           return;
         } else {
-          console.log("get_beers returned ", data);
-        }
-      });
-      on_tap_api.get_locations(token, function(err, data) {
+          $.each(data.beers, function(index, element){
+            $('#beer-list').append(element.name);
+        })
+      }
+      var selectLocations = on_tap_api.get_locations(token, function(err, data) {
         if (err) {
           console.log(err);
           return;
         } else {
           // create location options for beer select (in html)
-          console.log("get_locations returned ", data)
+          console.log("get_locations returned ", data);
+          $.each(data.locations, function(index, element){
+            $('#beer-list').append(element.name);
+          })
         }
       });
     });
   });
+});
 
   // TODO: create event handler that creates tap (which will
   //       be the submit handler for the form), that takes
