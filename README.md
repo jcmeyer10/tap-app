@@ -1,66 +1,27 @@
 # tap-app
+# [Start Bootstrap](http://startbootstrap.com/) - [One Page Wonder](http://startbootstrap.com/template-overviews/one-page-wonder/)
 
-$(document).ready(function(){
-  var form2object = function(form) {
-    $(form).find('input').each(function(index, element) {
-      var type = $(this).attr('type');
-      if ($(this).attr('name') && type !== 'submit' && type !== 'hidden') {
-        data[$(this).attr('name')] = $(this).val();
-      }
-    });
-    return data;
-  };
+[One Page Wonder](http://startbootstrap.com/template-overviews/one-page-wonder/) is a basic one page template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
-  var wrap = function wrap(root, formData) {
-    var wrapper = {};
-    wrapper[root] = formData;
-    return wrapper;
-  };
+## Getting Started
 
-  var callback = function callback(error, data) {
-    if (error) {
-      console.error(error);
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
-    }
-    $('#result').val(JSON.stringify(data, null, 4));
-  };
+To use this template, choose one of the following options to get started:
+* Download the latest release on Start Bootstrap
+* Fork this repository on GitHub
 
-  $('#register').on('submit', function(e) {
-    var credentials = wrap('credentials', form2object(this));
-    on_tap_api.register(credentials, callback);
-    e.preventDefault();
-  });
+## Bugs and Issues
 
-  $('#login').on('submit', function(e) {
-    var credentials = wrap('credentials', form2object(this));
-    var cb = function cb(error, data) {
-      if (error) {
-        callback(error);
-        return;
-      }
-      callback(null, data);
-      $('.token').val(data.user.token);
-      $('.id').val(data.user.id);
-    };
-    e.preventDefault();
-    on_tap_api.login(credentials, cb);
-  });
+Have a bug or an issue with this template? [Open a new issue](https://github.com/IronSummitMedia/startbootstrap-one-page-wonder/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/one-page-wonder/).
 
-  $('.logout').on('click', function(e){
-    var token = $('.token').val();
-    var id = $('.id').val();
-    var cb = function cb(error, data) {
-      if (error) {
-        callback(error);
-        return;
-      }
-    }
-    on_tap_api.logout(token, id, cb)
-  });
+## Creator
 
-});
+Start Bootstrap was created by and is maintained by **David Miller**, Managing Parter at [Iron Summit Media Strategies](http://www.ironsummitmedia.com/).
 
+* https://twitter.com/davidmillerskt
+* https://github.com/davidtmiller
 
+Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
 
-curl --request PATCH --header "Authorization: Token token=b7c7a672a33732b6816d4f66285be330" --header "Content-Type: application/json" -d '{   "beer": {      "brewery":"Victory Is Mine"   } }'  http://localhost:3000/beers/1
+## Copyright and License
+
+Copyright 2013-2015 Iron Summit Media Strategies, LLC. Code released under the [Apache 2.0](https://github.com/IronSummitMedia/startbootstrap-one-page-wonder/blob/gh-pages/LICENSE) license.
