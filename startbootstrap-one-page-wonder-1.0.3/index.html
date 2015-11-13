@@ -1,150 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>What's on Tap?!</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/one-page-wonder.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>What's on Tap?!</title>
+      <!-- Bootstrap Core CSS -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link href="css/one-page-wonder.css" rel="stylesheet">
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">What's on Tap?</a>
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">What's on Tap?</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                    <form id="login">
+               <ul class="nav navbar-nav">
+                  <li>
+                     <form id="login">
                         <input name="email" type="text" placeholder="email">
                         <input name="password" type="password" placeholder="password">
                         <input name="login" type="submit" value="Login">
-                    </form>
-                    </li>
-                    <li>
-                    <form id="register">
-                    <input name="email" type="text" placeholder="email">
-                    <input name="password" type="password" placeholder="password">
-                    <input name="password_confirmation" type="password" placeholder="password confirmation">
-                    <input name="register" type="submit" value="Register">
-                    </form>
-                    </li>
-                    <li>
-                        <a href="#" class="logout">Log Me Out</a>
-                        <input class="token" name="token" type="hidden">
-                        <input class="id" name="id" type="hidden">
-                    </li>
-
-                </ul>
+                     </form>
+                  </li>
+                  <li>
+                     <form id="register">
+                        <input name="email" type="text" placeholder="email">
+                        <input name="password" type="password" placeholder="password">
+                        <input name="password_confirmation" type="password" placeholder="password confirmation">
+                        <input name="register" type="submit" value="Register">
+                     </form>
+                  </li>
+                  <li>
+                     <a href="#" class="logout">Log Me Out</a>
+                     <input class="token" name="token" type="hidden">
+                     <input class="id" name="id" type="hidden">
+                  </li>
+               </ul>
             </div>
             <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Full Width Image Header -->
-    <header class="header-image">
-        <div class="headline">
+         </div>
+         <!-- /.container -->
+      </nav>
+      <!-- Full Width Image Header -->
+      <header class="header-image">
+         <div class="headline">
             <div class="container">
-                <h1>What's on Tap!?</h1>
-                <h2>Find Out What's on Tap Near You</h2>
+               <h1>What's on Tap!?</h1>
+               <h2>Find Out What's on Tap Near You</h2>
             </div>
-        </div>
-    </header>
-
-    <div class="container">
-    <div class="row">
-    <div class="center">
-        <div class="col-sm-6 col-sm-offset-3">
-            <div id="imaginary_container">
-                <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control"  placeholder="Search" >
-                    <span class="input-group-addon">
+         </div>
+      </header>
+      <div class="container">
+         <div class="row">
+            <div class="center">
+               <div class="col-sm-6 col-sm-offset-3">
+                  <div id="imaginary_container">
+                     <div class="input-group stylish-input-group">
+                        <input type="text" class="form-control"  placeholder="Search" >
+                        <span class="input-group-addon">
                         <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
+                        <span class="glyphicon glyphicon-search"></span>
                         </button>
-                    </span>
-                </div>
+                        </span>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-</div>
-
-    <!-- Page Content -->
-
-<div class="top-row">
-<div class="center">
-        <div class="col-xs-12">
-            <h2>Add Establishment And Tap List</h2>
-            <p>A Form to Add Establishment And Tap List Will Go Here</p>
-            <p><a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank" class="btn btn-success">Add Establishment &raquo;</a></p>
-        </div>
-            <div class="row">
-        <div class="col-xs-6">
-            <h2>This Is Where All the Establishments Will Be Displayed</h2>
-            <p>All the Establishments Upon Opening Site</p>
-            <p><a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank" class="btn btn-success">Learn More &raquo;</a></p>
-        </div>
-        <div class="col-xs-6">
-            <h2>New Establishment Added</h2>
-            <p>This is where a newly created establishment will be dsiplayed</p>
-            <p><a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank" class="btn btn-success">Learn More &raquo;</a></p>
-        </div>
-    </div>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Jeff Meyer 2015</p>
-                </div>
+         </div>
+         <!-- Page Content -->
+         <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-2">
+               <h2>Add Location Form</h2>
+               <p>
+               <form id="add-loc">
+                  <input name="name" type="text" placeholder="Name Of Location">
+                  <input name="street_num" type="text" placeholder="Street Number">
+                  <input name="street" type="text" placeholder="Street">
+                  <input name="city" type="text" placeholder="City">
+                  <input name="state" type="text" placeholder="State">
+                  <input name="submit-loc" type="submit" value="Submit">
+               </form>
+               </p>
             </div>
-        </footer>
-
-    </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Application JS file-->
-    <script src="js/on_tap_api.js"></script>
-
-    <!-- Application JS file -->
-    <script src="js/script.js"></script>
-</body>
-
+            <div class="col-sm-6 col-md-4 col-lg-2">
+               <h2>Add Beer</h2>
+               <p>
+               <form id="add-beer">
+                  <!--  <input name="loc_name" type="text" placeholder="Name Of Location"> -->
+                  <input name="name" type="text" placeholder="Beer Name">
+                  <input name="brewery" type="text" placeholder="Brewery">
+                  <input name="style" type="text" placeholder="Beer Style">
+                  <input name="submit-beer" type="submit" value="Submit">
+               </form>
+               </p>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-2">
+               <h2>Change Beer</h2>
+               <p>
+               <form id="change-beer">
+                  <!--  <input name="loc_name" type="text" placeholder="Name Of Location"> -->
+                  <input name="name" type="text" placeholder="Beer Name">
+                  <input name="brewery" type="text" placeholder="Brewery">
+                  <input name="style" type="text" placeholder="Beer Style">
+                  <input name="submit-beer" type="submit" value="Submit">
+               </form>
+               </p>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-2">
+               <h2>Change Location Form</h2>
+               <p>
+               <form id="change-loc">
+                  <input name="name" type="text" placeholder="Name Of Location">
+                  <input name="street_num" type="text" placeholder="Street Number">
+                  <input name="street" type="text" placeholder="Street">
+                  <input name="city" type="text" placeholder="City">
+                  <input name="state" type="text" placeholder="State">
+                  <input name="submit-loc" type="submit" value="Submit">
+               </form>
+               </p>
+            </div>
+            <div>
+               <div class="container"></div>
+               <div class="clearfix visible-md-block"></div>
+               <div class="col-sm-6 col-md-4 col-lg-2">
+                  <div id="location-list"></div>
+                  <h1> Add a Tap</h1>
+                  <p> Just Select a Location And Select a Beer to Let Folks Know You Saw It But First Get the Update List!</p>
+                  <p><a class="btn btn-primary" href="#" role="button">Get The List &raquo;</a></p>
+                  <form id="create-taps">
+                     <select id="locations-list">
+                        <option value = "id">
+                     </select>
+                     <select id="beers-list">
+                        <option value = "id">
+                     </select>
+                     <p><input name="add-tap" type="submit" value="Add A Tap"></p>
+                  </form>
+               </div>
+               <div class="clearfix visible-md-block"></div>
+               <div class="col-sm-6 col-md-4 col-lg-2">
+                  <div id="beer-list"
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Footer -->
+      <footer>
+         <div class="row">
+            <div class="col-lg-12">
+               <p>Copyright &copy; Jeff Meyer 2015</p>
+            </div>
+         </div>
+      </footer>
+      </div>
+      <!-- /.container -->
+      <!-- jQuery -->
+      <script src="js/jquery.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="js/bootstrap.min.js"></script>
+      <!-- Application JS file-->
+      <script src="js/on_tap_api.js"></script>
+      <!-- Application JS file -->
+      <script src="js/script.js"></script>
+   </body>
 </html>

@@ -24,6 +24,8 @@ $(document).ready(function(){
     $('#result').val(JSON.stringify(data, null, 4));
   };
 
+  $.ajax
+
   $('#register').on('submit', function(e) {
     var credentials = wrap('credentials', form2object(this));
     on_tap_api.register(credentials, callback);
@@ -59,13 +61,106 @@ $(document).ready(function(){
     on_tap_api.logout(token, id, cb)
   });
 
-});
 
-  // $('#get-beers').on('click', function(e){
-  //   on_tap_api.beers;
-  // })
-  // var cb = function cb(error, data) {
-  //     if (error) {
-  //       callback(error);
-  //       return;
-  // });
+  //  TODO: Create function to show a list of locations with
+  //        the beers that are attached to them via taps on
+  //        load
+
+
+  //  TODO: Create a function that submits a new location to
+  //        backend when submit button is clicked
+    $('#add-loc').on('submit', function(e) {
+      e.preventDefault();
+      var token = $('.token').val();
+      var new_location = wrap('location', form2object(this));
+      on_tap_api.new_location(token, new_location, function(err, locData) {
+        if(err) {
+          // do something with the error
+          return;
+        } else{
+          console.log(locData);
+        }
+      });
+   });
+
+   //  TODO: Create a function that submits a new location to
+  //        backend when submit button is clicked
+
+    $('#add-beer').on('submit', function(e) {
+      e.preventDefault();
+      var token = $('.token').val();
+      var new_beer = wrap('beer', form2object(this));
+      on_tap_api.new_beer(token, new_beer, function(err, beerData) {
+        if(err) {
+          // do something with the error
+          return;
+        } else{
+          console.log(beerData);
+        }
+      });
+    });
+
+    // TODO: Create a function that can changes beer
+    //       beer values
+
+    $('#change-beer').on('submit', function(e) {
+      e.preventDefault();
+      var beer_id = beerID();
+      var token = $('.token').val();
+      var change_beer = wrap('beer', form2object(this));
+      on_tap_api.change_beer(token, beer_id, change_beer, function(err, beerData) {
+        if(err) {
+          // do something with the error
+          return;
+        } else{
+          console.log(beerData);
+        }
+      });
+    });
+
+    // TODO: Create function that changes location values
+
+    $('#change-loc').on('submit', function(e) {
+      e.preventDefault();
+      var beerID = beerID();
+      var token = $('.token').val();
+      var change_loc = wrap('location', form2object(this));
+      on_tap_api.change_loc(token, location_id, change_loc, function(err, locData) {
+        if(err) {
+          // do something with the error
+          return;
+        } else{
+          console.log(locData);
+        }
+      });
+    });
+
+    $("#create-taps").on('submit', function(e) {
+      e.preventDefault();
+      var token = $('.token').val();
+
+      on_tap_api.get_beers(token, function(err, data) {
+        if (err) {
+          console.log(err);
+          return;
+        } else {
+          console.log("get_beers returned ", data);
+        }
+      });
+      on_tap_api.get_locations(token, function(err, data) {
+        if (err) {
+          console.log(err);
+          return;
+        } else {
+          // create location options for beer select (in html)
+          console.log("get_locations returned ", data)
+        }
+      });
+    });
+  });
+
+  // TODO: create event handler that creates tap (which will
+  //       be the submit handler for the form), that takes
+  //       beer_id and location_id that are selected and
+  //       creates tap in back end
+
