@@ -1,5 +1,7 @@
 # tap-app
 
+Link to Back-End Repo: https://github.com/jcmeyer10/tap-app
+
 This is what I used to plan out my app
 
 <img src="https://cloud.githubusercontent.com/assets/12531471/11219766/4bba02ae-8d2a-11e5-9b2a-a2a97dc65bf8.jpg" width="15%"></img>
