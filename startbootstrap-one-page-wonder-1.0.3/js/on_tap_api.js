@@ -55,44 +55,6 @@ var on_tap_api = {
     }, callback);
   },
 
-  get_taps: function(token, get_taps, callback){
-    this.ajax({
-      method: 'GET',
-      url: this.url + '/taps',
-      headers: {
-        Authorization: 'Token token=' + token
-      },
-      contentType: 'application/json; charset=utf-8',
-      data: JSON.stringify(get_taps),
-      dataType: 'json'
-    }, callback);
-  },
-
-  get_locations: function (token, callback) {
-    this.ajax({
-      method: 'GET',
-      url: this.url + '/locations',
-      headers: {
-        Authorization: 'Token token=' + token
-      },
-      contentType: 'application/json; charset=utf-8'
-    }, callback);
-  },
-
-  new_location: function (token, new_location, callback) {
-    this.ajax({
-      method: 'POST',
-      url: this.url + '/locations',
-      headers: {
-        Authorization: 'Token token=' + token
-      },
-      contentType: 'application/json; charset=utf-8',
-      data: JSON.stringify(new_location),
-      dataType: 'json'
-
-    }, callback);
-  },
-
   new_beer: function (token, new_beer, callback) {
     this.ajax({
       method: 'POST',
@@ -121,16 +83,17 @@ var on_tap_api = {
     }, callback);
   },
 
-  change_location: function (token, location_id, change_location, callback) {
+  delete_beer: function (token, id, delete_beer, callback) {
     this.ajax({
-      method: 'PATCH',
-      url: this.url + '/locations' + id,
+    method: 'DELETE',
+      url: this.url + '/beers' + id,
       headers: {
         Authorization: 'Token token=' + token
       },
       contentType: 'application/json; charset=utf-8',
-      data: JSON.stringify(change_location),
+      data: JSON.stringify(delete_beer),
       dataType: 'json'
+
     }, callback);
   }
 };

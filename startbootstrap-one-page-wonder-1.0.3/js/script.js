@@ -24,8 +24,6 @@ $(document).ready(function() {
         $('#result').val(JSON.stringify(data, null, 4));
       };
 
-      $.ajax
-
       $('#register').on('submit', function(e) {
         e.preventDefault();
         var credentials = wrap('credentials', form2object(this));
@@ -50,7 +48,8 @@ $(document).ready(function() {
         };
         e.preventDefault();
         on_tap_api.login(credentials, cb);
-
+        $('#login').hide();
+        $('#register').hide();
       });
 
       $('.logout').on('click', function(e) {
@@ -61,8 +60,10 @@ $(document).ready(function() {
             callback(error);
             return;
           }
-        }
-        on_tap_api.logout(token, id, cb)
+        };
+        on_tap_api.logout(token, id, cb);
+        $('#login').show();
+        $('#register').show();
       });
 
       //  TODO: Create function to show a list of locations with
@@ -71,22 +72,6 @@ $(document).ready(function() {
 
       //  TODO: Create a function that submits a new location to
       //        backend when submit button is clicked
-      $('#add-loc').on('submit', function(e) {
-        e.preventDefault();
-        var token = $('.token').val();
-        var new_location = wrap('location', form2object(this));
-        on_tap_api.new_location(token, new_location, function(err, locData) {
-          if (err) {
-            // do something with the error
-            return;
-          } else {
-            $('#add-loc').each(function(){
-            this.reset();
-          });
-            console.log(locData);
-          }
-        });
-      });
 
       //  TODO: Create a function that submits a new location to
       //        backend when submit button is clicked
@@ -129,24 +114,9 @@ $(document).ready(function() {
 
       // TODO: Create function that changes location values
 
-      $('#change-loc').on('submit', function(e) {
+    $("#get-beer").on('click', function(e) {
         e.preventDefault();
-        var beerID = beerID();
-        var token = $('.token').val();
-        var change_loc = wrap('location', form2object(this));
-        on_tap_api.change_loc(token, location_id, change_loc, function(err,
-          locData) {
-          if (err) {
-            // do something with the error
-            return;
-          } else {
-            console.log(locData);
-          }
-        });
-      });
-
-      $("#create-taps").on('submit', function(e) {
-        e.preventDefault();
+        $('.beer-list').html('');
         var token = $('.token').val();
         var data = [];
         on_tap_api.get_beers(token, function(err, data) {
@@ -154,29 +124,32 @@ $(document).ready(function() {
             console.log(err);
             return;
           } else {
-            $('#add-beer').each(function(){
+            $.each(data.beers, function(index, element) {
+              $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
+          });
+        }
+      });
+    });
+
+  $("#delete-beer").on('submit', function(e) {
+    e.preventDefault();
+    var token = $('.token').val();
+    var id = $('.beerid').val();
+    var data = [];
+    on_tap_api.delete_beer(token, function(err, data) {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+    $('#delete-beer').each(function(){
             this.reset();
           });
             $.each(data.beers, function(index, element) {
               $('#beer-list').append(element.name);
-            })
-          }
-          var selectLocations = on_tap_api.get_locations(token,
-            function(err, data) {
-              if (err) {
-                console.log(err);
-                return;
-              } else {
-                // create location options for beer select (in html)
-                console.log("get_locations returned ", data);
-                $.each(data.locations, function(index, element) {
-                  $('#location-list').append(element.name);
-
-                })
-              }
             });
-        });
+        }
       });
+    });
 
 // TODO: create event handler that creates tap (which will
   //       be the submit handler for the form), that takes
