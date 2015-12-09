@@ -43,6 +43,7 @@ $(document).ready(function() {
           console.log(data.user.token);
           $('#login').each(function(){
             this.reset();
+          $('#beer-list').show();
           });
 
         };
@@ -50,6 +51,7 @@ $(document).ready(function() {
         on_tap_api.login(credentials, cb);
         $('#login').hide();
         $('#register').hide();
+        on_tap_api.get_beers;
       });
 
       $('.logout').on('click', function(e) {
@@ -85,13 +87,17 @@ $(document).ready(function() {
             // do something with the error
             return;
           } else {
+            $('.beer-list').show();
             $('#add-beer').each(function(){
             this.reset();
+            $.each(beerData, function(index, element) {
+            $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
           });
-            console.log(beerData);
-          }
+            console.log(beerData)
         });
+        }
       });
+    });
 
       // TODO: Create a function that can changes beer
       //       beer values
@@ -107,10 +113,12 @@ $(document).ready(function() {
             // do something with the error
             return;
           } else {
-            console.log(beerData);
-          }
-        });
+          $.each(beerData, function(index, element) {
+            $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
+          });
+        }
       });
+    });
 
       // TODO: Create function that changes location values
 
@@ -119,6 +127,7 @@ $(document).ready(function() {
         $('.beer-list').html('');
         var token = $('.token').val();
         var data = [];
+        console.log(data);
         on_tap_api.get_beers(token, function(err, data) {
           if (err) {
             console.log(err);
@@ -134,8 +143,6 @@ $(document).ready(function() {
   $("#delete-beer").on('submit', function(e) {
     e.preventDefault();
     var token = $('.token').val();
-    var id = $('.beerid').val();
-    var data = [];
     on_tap_api.delete_beer(token, function(err, data) {
       if (err) {
         console.log(err);
@@ -145,7 +152,7 @@ $(document).ready(function() {
             this.reset();
           });
             $.each(data.beers, function(index, element) {
-              $('#beer-list').append(element.name);
+              $('#beer-list').remove(element.name);
             });
         }
       });

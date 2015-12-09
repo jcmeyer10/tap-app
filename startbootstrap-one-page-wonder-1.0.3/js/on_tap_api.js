@@ -41,7 +41,7 @@ var on_tap_api = {
       contentType: 'application/json',
       dataType: 'json'
     }, callback);
-    console.log("success")
+    console.log("success");
   },
 
   get_beers: function (token, callback) {
@@ -83,15 +83,15 @@ var on_tap_api = {
     }, callback);
   },
 
-  delete_beer: function (token, id, delete_beer, callback) {
+  delete_beer: function (token, beer_id, delete_beer, callback) {
     this.ajax({
     method: 'DELETE',
-      url: this.url + '/beers' + id,
+      url: this.url + '/beers/' + id,
       headers: {
         Authorization: 'Token token=' + token
       },
       contentType: 'application/json; charset=utf-8',
-      data: JSON.stringify(delete_beer),
+      // data: JSON.stringify(delete_beer),
       dataType: 'json'
 
     }, callback);
