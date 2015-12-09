@@ -17,7 +17,7 @@ var on_tap_api = {
       data: JSON.stringify(credentials),
       dataType: 'json'
     }, callback);
-    console.log("success")
+    console.log("register success");
   },
 
   login: function (credentials, callback) {
@@ -28,7 +28,7 @@ var on_tap_api = {
       data: JSON.stringify(credentials),
       dataType: 'json'
     }, callback);
-    console.log("success")
+    console.log("login success");
   },
 
   logout: function (token, id, callback) {
@@ -41,7 +41,7 @@ var on_tap_api = {
       contentType: 'application/json',
       dataType: 'json'
     }, callback);
-    console.log("success");
+    console.log(" logout success");
   },
 
   get_beers: function (token, callback) {
@@ -53,6 +53,7 @@ var on_tap_api = {
       },
       contentType: 'application/json; charset=utf-8'
     }, callback);
+    console.log("get them beers");
   },
 
   new_beer: function (token, new_beer, callback) {
@@ -67,33 +68,35 @@ var on_tap_api = {
       dataType: 'json'
 
     }, callback);
+    console.log(new_beer);
   },
 
   change_beer: function (token, beer_id, change_beer, callback) {
     this.ajax({
       method: 'PATCH',
-      url: this.url + '/beers' + id,
+      url: this.url + '/beers/' + id,
       headers: {
         Authorization: 'Token token=' + token
       },
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify(change_beer),
       dataType: 'json'
-
     }, callback);
+    console.log(change_beer);
   },
 
-  delete_beer: function (token, beer_id, delete_beer, callback) {
+  delete_beer: function (token, beerid, callback) {
     this.ajax({
     method: 'DELETE',
-      url: this.url + '/beers/' + id,
+      url: this.url + '/beers/' + beerid,
       headers: {
         Authorization: 'Token token=' + token
       },
       contentType: 'application/json; charset=utf-8',
-      // data: JSON.stringify(delete_beer),
+      data: JSON.stringify(beerid),
       dataType: 'json'
 
     }, callback);
+    console.log(beerid);
   }
 };

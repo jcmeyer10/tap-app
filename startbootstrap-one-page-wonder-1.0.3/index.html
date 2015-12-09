@@ -96,6 +96,7 @@
                <p>
                <form id="change-beer">
                   <!--  <input name="loc_name" type="text" placeholder="Name Of Location"> -->
+                  <input name="beerid" type="text" placeholder="Beer ID">
                   <input name="name" type="text" placeholder="Beer Name">
                   <input name="brewery" type="text" placeholder="Brewery">
                   <input name="style" type="text" placeholder="Beer Style">
@@ -107,9 +108,10 @@
                <h2>Delete A Beer</h2>
                <p>
                <form id="delete-beer">
-                  <!--  <input name="loc_name" type="text" placeholder="Name Of Location"> -->
-                  <input name="beerid" type="text" placeholder="Beer ID">
-                  <input name="delete-beer" type="submit" value="Submit">
+                  <input name="beer-id" type="text" placeholder="Beer ID">
+                  <input name="deletebeer" type="submit" value="Submit">
+                   <input class="token" name="token" type="hidden">
+                  <input class="beerid" name="beerid" type="hidden">
                </form>
                </p>
             </div>

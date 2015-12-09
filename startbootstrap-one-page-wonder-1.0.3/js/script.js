@@ -41,9 +41,9 @@ $(document).ready(function() {
           $('.token').val(data.user.token);
           $('.id').val(data.user.id);
           console.log(data.user.token);
+          on_tap_api.get_beers;
           $('#login').each(function(){
             this.reset();
-          $('#beer-list').show();
           });
 
         };
@@ -68,23 +68,12 @@ $(document).ready(function() {
         $('#register').show();
       });
 
-      //  TODO: Create function to show a list of locations with
-      //        the beers that are attached to them via taps on
-      //        load
-
-      //  TODO: Create a function that submits a new location to
-      //        backend when submit button is clicked
-
-      //  TODO: Create a function that submits a new location to
-      //        backend when submit button is clicked
-
       $('#add-beer').on('submit', function(e) {
         e.preventDefault();
         var token = $('.token').val();
         var new_beer = wrap('beer', form2object(this));
         on_tap_api.new_beer(token, new_beer, function(err, beerData) {
           if (err) {
-            // do something with the error
             return;
           } else {
             $('.beer-list').show();
@@ -93,7 +82,7 @@ $(document).ready(function() {
             $.each(beerData, function(index, element) {
             $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
           });
-            console.log(beerData)
+            console.log(beerData);
         });
         }
       });
@@ -104,7 +93,6 @@ $(document).ready(function() {
 
       $('#change-beer').on('submit', function(e) {
         e.preventDefault();
-        var beer_id = beerID();
         var token = $('.token').val();
         var change_beer = wrap('beer', form2object(this));
         on_tap_api.change_beer(token, beer_id, change_beer, function(err,
@@ -140,29 +128,27 @@ $(document).ready(function() {
       });
     });
 
-  $("#delete-beer").on('submit', function(e) {
-    e.preventDefault();
-    var token = $('.token').val();
-    on_tap_api.delete_beer(token, function(err, data) {
+    $("#delete-beer").on('submit', function(e) {
+      e.preventDefault();
+      var token = $('.token').val();
+      var beerid = $('#delete-beer > input[name="beer-id"]').val();
+      console.log(beerid);
+    // console.log(beer);
+    on_tap_api.delete_beer(token, beerid, function(err, data) {
       if (err) {
         console.log(err);
         return;
       } else {
-    $('#delete-beer').each(function(){
-            this.reset();
-          });
-            $.each(data.beers, function(index, element) {
-              $('#beer-list').remove(element.name);
-            });
-        }
-      });
+        console.log(data);
+        // $('#delete-beer').each(function(){
+        //   this.reset();
+        // });
+        // $.each(beerid, function(index, element) {
+        //   $('#beer-list').remove(element.name);
+        // });
+      }
     });
-
-// TODO: create event handler that creates tap (which will
-  //       be the submit handler for the form), that takes
-  //       beer_id and location_id that are selected and
-  //       creates tap in back end
-
+  });
 
 }); // End of Document Ready
 
