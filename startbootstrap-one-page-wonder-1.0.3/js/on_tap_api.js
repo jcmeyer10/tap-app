@@ -53,7 +53,7 @@ var on_tap_api = {
       },
       contentType: 'application/json; charset=utf-8'
     }, callback);
-    console.log("get them beers");
+    console.log();
   },
 
   new_beer: function (token, new_beer, callback) {

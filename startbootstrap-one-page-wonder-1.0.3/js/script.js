@@ -76,13 +76,13 @@ $(document).ready(function() {
           if (err) {
             return;
           } else {
-            $('.beer-list').show();
+          console.log(new_beer);
             $('#add-beer').each(function(){
             this.reset();
-            $.each(beerData, function(index, element) {
-            $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
+           $.each(beerData, function(index, element) {
+              $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + ' ' + element.style + ' ' + "Quantity: " + element.quantity + '         ' + "ID: " + element.id + "</li>");
+              $('.beer-list').show();
           });
-            console.log(beerData);
         });
         }
       });
@@ -101,7 +101,7 @@ $(document).ready(function() {
             console.error(err);
             return;
           } else {
-            console.log(data);
+            // console.log(data);
           // $.each(beerData, function(index, element) {
           //   $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
           // });
@@ -116,14 +116,15 @@ $(document).ready(function() {
         $('.beer-list').html('');
         var token = $('.token').val();
         var data = [];
-        console.log(data);
         on_tap_api.get_beers(token, function(err, data) {
           if (err) {
             console.log(err);
             return;
           } else {
             $.each(data.beers, function(index, element) {
-              $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
+              $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + ' ' + element.style + ' ' + "Quantity: " + element.quantity +'         ' + "ID: " + element.id + "</li>");
+              console.log(element);
+              // console.log("Get data: " + data);
           });
         }
       });
