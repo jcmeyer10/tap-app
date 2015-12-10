@@ -28,6 +28,7 @@ $(document).ready(function() {
     e.preventDefault();
     var credentials = wrap('credentials', form2object(this));
     on_tap_api.register(credentials, callback);
+    $('#register').hide();
   });
 
   $('#login').on('submit', function(e) {
