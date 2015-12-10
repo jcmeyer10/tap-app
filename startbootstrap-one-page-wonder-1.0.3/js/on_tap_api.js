@@ -71,10 +71,10 @@ var on_tap_api = {
     console.log(new_beer);
   },
 
-  change_beer: function (token, beer_id, change_beer, callback) {
+  change_beer: function (token, beerid, change_beer, callback) {
     this.ajax({
       method: 'PATCH',
-      url: this.url + '/beers/' + id,
+      url: this.url + '/beers/' + beerid,
       headers: {
         Authorization: 'Token token=' + token
       },

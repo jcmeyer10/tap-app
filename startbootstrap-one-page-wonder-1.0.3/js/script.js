@@ -94,16 +94,17 @@ $(document).ready(function() {
       $('#change-beer').on('submit', function(e) {
         e.preventDefault();
         var token = $('.token').val();
+        var beerid = $('#change-beer > input[name="beer-id"]').val();
         var change_beer = wrap('beer', form2object(this));
-        on_tap_api.change_beer(token, beer_id, change_beer, function(err,
-          beerData) {
+        on_tap_api.change_beer(token, beerid, change_beer, function(err, data) {
           if (err) {
-            // do something with the error
+            console.error(err);
             return;
           } else {
-          $.each(beerData, function(index, element) {
-            $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
-          });
+            console.log(data);
+          // $.each(beerData, function(index, element) {
+          //   $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + '         ' + "ID: " + element.id + "</li>");
+          // });
         }
       });
     });
@@ -133,10 +134,9 @@ $(document).ready(function() {
       var token = $('.token').val();
       var beerid = $('#delete-beer > input[name="beer-id"]').val();
       console.log(beerid);
-    // console.log(beer);
     on_tap_api.delete_beer(token, beerid, function(err, data) {
       if (err) {
-        console.log(err);
+        console.error(err);
         return;
       } else {
         console.log(data);
