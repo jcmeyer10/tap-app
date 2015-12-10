@@ -93,7 +93,7 @@ $(document).ready(function() {
         console.error(err);
         return;
       } else {
-        $('.beer-list').html("You've Successfully Updated Your Beer, Please Press Get Beer List To See Updated Results!");
+        $('.beer-list').html("You've Successfully Updated Beer, " + beerid + "Please Press Get Beer List To See Updated Results!");
 
         // console.log(data);
         // $.each(data.beers, function(index, element) {
