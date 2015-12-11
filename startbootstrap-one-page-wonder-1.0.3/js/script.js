@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+  $('#change-beer').hide();
+  $('#get-beer').hide();
+  $('#delete-beer').hide();
+  $('#get-beer').hide();
   var form2object = function(form) {
     var data = {};
     $(form).find('input').each(function(index, element) {
@@ -48,6 +53,10 @@ $(document).ready(function() {
     on_tap_api.login(credentials, cb);
     $('#login').hide();
     $('#register').hide();
+    $('#change-beer').show();
+    $('#get-beer').show();
+    $('#delete-beer').show();
+    $('#get-beer').show();
   });
 
   $('.logout').on('click', function(e) {
