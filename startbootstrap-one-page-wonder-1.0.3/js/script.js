@@ -72,6 +72,10 @@ $(document).ready(function() {
     on_tap_api.logout(token, id, cb);
     $('#login').show();
     $('#register').show();
+    $('#add-beer').hide();
+    $('#change-beer').hide();
+    $('#get-beer').hide();
+    $('#delete-beer').hide();
   });
 
   $('#add-beer').on('submit', function(e) {
