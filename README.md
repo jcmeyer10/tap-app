@@ -7,6 +7,8 @@ This is what I used to plan out my app
 
 ![beerlocker](https://cloud.githubusercontent.com/assets/12531471/11754816/dca89100-a01b-11e5-82c9-8ec8639a9f16.png)
 
+![beerlockererd](https://cloud.githubusercontent.com/assets/12531471/11754961/09b50d26-a01d-11e5-87de-15cada45885a.png)
+
 Included is the simple wireframe, ERD, and user stories.
 
 What I have today:
