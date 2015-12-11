@@ -4,6 +4,7 @@ $(document).ready(function() {
   $('#get-beer').hide();
   $('#delete-beer').hide();
   $('#add-beer').hide();
+
   var form2object = function(form) {
     var data = {};
     $(form).find('input').each(function(index, element) {
@@ -56,7 +57,7 @@ $(document).ready(function() {
     $('#change-beer').show();
     $('#get-beer').show();
     $('#delete-beer').show();
-    $('#get-beer').show();
+    $('#add-beer').show();
   });
 
   $('.logout').on('click', function(e) {
