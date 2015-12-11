@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
+  $('#add-beer').hide();
   $('#change-beer').hide();
   $('#get-beer').hide();
   $('#delete-beer').hide();
-  $('#add-beer').hide();
 
   var form2object = function(form) {
     var data = {};
