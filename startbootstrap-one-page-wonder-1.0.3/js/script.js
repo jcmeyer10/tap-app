@@ -76,6 +76,7 @@ $(document).ready(function() {
     $('#change-beer').hide();
     $('#get-beer').hide();
     $('#delete-beer').hide();
+    $('.beer-list').hide();
   });
 
   $('#add-beer').on('submit', function(e) {
