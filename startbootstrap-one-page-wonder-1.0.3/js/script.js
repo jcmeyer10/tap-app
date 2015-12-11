@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('#change-beer').hide();
   $('#get-beer').hide();
   $('#delete-beer').hide();
-  $('#get-beer').hide();
+  $('#add-beer').hide();
   var form2object = function(form) {
     var data = {};
     $(form).find('input').each(function(index, element) {
