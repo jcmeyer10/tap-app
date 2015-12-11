@@ -5,7 +5,7 @@ Link to live app: http://jcmeyer10.github.io/tap-app/startbootstrap-one-page-won
 
 This is what I used to plan out my app
 
-<img src="https://cloud.githubusercontent.com/assets/12531471/11219766/4bba02ae-8d2a-11e5-9b2a-a2a97dc65bf8.jpg" width="15%"></img>
+![beerlocker](https://cloud.githubusercontent.com/assets/12531471/11754816/dca89100-a01b-11e5-82c9-8ec8639a9f16.png)
 
 Included is the simple wireframe, ERD, and user stories.
 
