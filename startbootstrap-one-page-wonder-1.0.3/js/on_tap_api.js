@@ -1,5 +1,5 @@
 var on_tap_api = {
-  url: 'https://obscure-fjord-2393.herokuapp.com/',
+  url: 'http://localhost:3000',
 
   ajax: function (config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
@@ -53,7 +53,6 @@ var on_tap_api = {
       },
       contentType: 'application/json; charset=utf-8'
     }, callback);
-    console.log();
   },
 
   new_beer: function (token, new_beer, callback) {
@@ -71,7 +70,7 @@ var on_tap_api = {
     console.log(new_beer);
   },
 
-  change_beer: function (token, beerid, change_beer, callback) {
+  change_beer: function (token, beerid, diff_beer, callback) {
     this.ajax({
       method: 'PATCH',
       url: this.url + '/beers/' + beerid,
@@ -79,10 +78,10 @@ var on_tap_api = {
         Authorization: 'Token token=' + token
       },
       contentType: 'application/json; charset=utf-8',
-      data: JSON.stringify(change_beer),
+      data: JSON.stringify(diff_beer),
       dataType: 'json'
     }, callback);
-    console.log(change_beer);
+    console.log(diff_beer);
   },
 
   delete_beer: function (token, beerid, callback) {

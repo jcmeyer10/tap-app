@@ -6,17 +6,61 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
+      <!-- jQuery -->
+      <script src="js/jquery.js"></script>
+      <!-- Handlebars Templates -->
+      <script src="js/handlebars.js"></script>
+      <!-- Title -->
       <title>Beer Locker</title>
       <!-- Bootstrap Core CSS -->
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <!-- Custom CSS -->
       <link href="css/one-page-wonder.css" rel="stylesheet">
+
+        <!-- Handlebars CSS -->
+      <link href="css/main.css" rel="stylesheet">
+
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+<script id="beer-index" type="text/x-handlebars-template">
+      <table>
+         <thead>
+          <th>Beer Name</th>
+          <th>Brewery</th>
+          <th>Style</th>
+          <th>Quantity</th>
+       </thead>
+
+       <tbody>
+         {{#each beers}}
+            <tr>
+
+               <td><span class ="beerstatic">{{name}}</span>
+               <input class="beeredit" type="text" value="{{name}}" data-id="{{id}}" data-field="name" /></td>
+
+               <td><span class ="beerstatic">{{brewery}}</span>
+               <input class="beeredit" type="text" value="{{brewery}}" data-id="{{id}}" data-field="dob" /></td>
+
+               <td><span class="beerstatic">{{style}}</span>
+               <input class="beeredit" type="text" value="{{style}}" data-id="{{id}}" data-field="style" /></td>
+
+               <td><span class="beerstatic">{{quantity}}</span>
+               <input class="beeredit" type="number" value="{{quantity}}" data-id="{{id}}" data-field="quantity" /></td>
+
+                <td><button class="beeredit" type="button" data-type="commit" data-id={{id}}>OK</button></td>
+                <td><button class="beeredit" type="button" data-type="reset" data-id={{id}}>Cancel</button></td>
+                <td><button class="beerstatic" type="button" data-type="edit" data-id={{id}}>Edit</button></td>
+                <td><button class="beerstatic" type="button" data-type="delete" data-id={{id}}>Delete</button></td>
+            </tr>
+         {{/each}}
+      </tbody>
+   </table>
+</script>
+
    </head>
    <body>
       <!-- Navigation -->
@@ -70,15 +114,9 @@
             </div>
          </div>
       </header>
-      <div class="container">
-         <div class="row">
-            <div class="center">
-               <div class="col-sm-6 col-sm-offset-3">
-               <input id="get-beer" type="submit" value="Get Beer List">
-               </div>
-            </div>
-         </div>
+
          <!-- Page Content -->
+         <div class="container">
             <div id="add-beer" class="col-sm-6 col-md-4 col-lg-2">
                <h2>Add Beer</h2>
                <p>
@@ -86,43 +124,15 @@
                   <input name="name" type="text" placeholder="Beer Name">
                   <input name="brewery" type="text" placeholder="Brewery">
                   <input name="style" type="text" placeholder="Beer Style">
-                  <input name="quantity" type="text" placeholder="Beer Quantity">
+                  <input name="quantity" type="number" placeholder="Beer Quantity">
                   <input name="submit-beer" type="submit" value="Submit">
                </form>
                </p>
             </div>
-            <div id="change-beer" class="col-sm-6 col-md-4 col-lg-2">
-               <h2>Change Beer Quantity</h2>
-               <p>
-               <form id="change-beer">
-                  <!--  <input name="loc_name" type="text" placeholder="Name Of Location"> -->
-                  <input name="beer-id" type="text" placeholder="Beer ID">
-                <!--   <input name="name" type="text" placeholder="Beer Name">
-                  <input name="brewery" type="text" placeholder="Brewery">
-                  <input name="style" type="text" placeholder="Beer Style"> -->
-                  <input name="quantity" type="text" placeholder="Beer Quantity">
-                  <input name="submit-" type="submit" value="Submit">
-               </form>
-               </p>
+         <div id="beers">
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
             </div>
-            <div id="delete-beer" class="col-sm-6 col-md-4 col-lg-2">
-               <h2>Delete A Beer</h2>
-               <p>
-               <form id="delete-beer">
-                  <input name="beer-id" type="text" placeholder="Beer ID">
-                  <input name="deletebeer" type="submit" value="Submit">
-                  <input class="token" name="token" type="hidden">
-                  <input class="beerid" name="beerid" type="hidden">
-               </form>
-               </p>
-            </div>
-            <div id="beers">
-               <div class="container"></div>
-               <div class="clearfix visible-md-block"></div>
-               <div class="col-sm-12 col-md-12 col-lg-12">
-                   <ul class="beer-list">
-                   </ul>
-               </div>
          </div>
       </div>
       <!-- Footer -->
@@ -133,10 +143,18 @@
             </div>
          </div>
       </footer>
-      </div>
+
+
+<!--      //    <ul class="beer_list">
+     //       {{#each beers}}
+     //       <li>{{name}} ({{style}}): Brewed by {{brewery}}, and you have {{quantity}} left!</li>
+     //       <button id="edit-beer" class="admin-button" data-id={{beers._id}}>Edit</button>
+     //       <button id="delete-beer" class="admin-button" data-id={{beers._id}}>Delete</button>
+     //       {{/each}}
+     //    </ul> -->
+
+
       <!-- /.container -->
-      <!-- jQuery -->
-      <script src="js/jquery.js"></script>
       <!-- Bootstrap Core JavaScript -->
       <script src="js/bootstrap.min.js"></script>
       <!-- Application JS file-->
@@ -144,6 +162,6 @@
       <!-- Application JS file -->
       <script src="js/script.js"></script>
       <!-- Handlebars Templates -->
-      <script src="js/handlebars.js"></script>
+      <script src="js/beerlist.js"></script>
    </body>
 </html>

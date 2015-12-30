@@ -1,4 +1,12 @@
+var authCreds = {
+  token: null,
+  id: null,
+  email: null
+};
+
 $(document).ready(function() {
+
+  var beerIndexTemplate = Handlebars.compile($('#beer-index').html());
 
   $('#add-beer').hide();
   $('#change-beer').hide();
@@ -38,113 +46,75 @@ $(document).ready(function() {
   });
 
   $('#login').on('submit', function(e) {
+    e.preventDefault();
     var credentials = wrap('credentials', form2object(this));
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
         return;
-      }
+      } else {
       callback(null, data);
-      $('.token').val(data.user.token);
-      $('.id').val(data.user.id);
-      $('#beers').show();
-      console.log(data.user.token);
-    };
+      authCreds.email = data.user.email;
+      authCreds.token = data.user.token;
+      authCreds.id = data.user.id;
+      console.log(data);
+      getBeerCb();
+    }
     e.preventDefault();
-    on_tap_api.login(credentials, cb);
+
     $('#login').hide();
     $('#register').hide();
     $('#change-beer').show();
     $('#get-beer').show();
     $('#delete-beer').show();
     $('#add-beer').show();
-  });
+    $('#beers').show();
+  };
+  on_tap_api.login(credentials, cb);
+});
 
   $('.logout').on('click', function(e) {
-    var token = $('.token').val();
-    var id = $('.id').val();
+    var token = authCreds.token;
+    var id = authCreds.id;
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
         return;
-      }
-    };
-    on_tap_api.logout(token, id, cb);
+      } else {
     $('#login').show();
     $('#register').show();
     $('#add-beer').hide();
     $('#change-beer').hide();
     $('#get-beer').hide();
     $('#delete-beer').hide();
-    $('.beer-list').hide();
-  });
+    $('#beers').hide();
+  }
+};
+   on_tap_api.logout(token, id, cb);
+});
+
 
   $('#add-beer').on('submit', function(e) {
     e.preventDefault();
-    var token = $('.token').val();
+    var token = authCreds.token;
+    var id = authCreds.id;
     var new_beer = wrap('beer', form2object(this));
     on_tap_api.new_beer(token, new_beer, function(err, beerData) {
       if (err) {
         return;
       } else {
         console.log(new_beer);
-        $('#add-beer').each(function(){
-          this.reset();
-          $.each(beerData, function(index, element) {
-            $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + ' ' + element.style + ' ' + "Quantity: " + element.quantity + '         ' + "ID: " + element.id + "</li>");
-            $('.beer-list').show();
-          });
-        });
-      }
+        getBeerCb();
+        }
+      });
     });
-  });
 
-  $('#change-beer').on('submit', function(e) {
+  // Allows user to delete beers
+
+  $("#beers").on('click', "button[data-type=delete]", function(e) {
     e.preventDefault();
-    var token = $('.token').val();
-    var beerid = $('#change-beer > input[name="beer-id"]').val();
-    var change_beer = wrap('beer', form2object(this));
-    on_tap_api.change_beer(token, beerid, change_beer, function(err, data) {
-      if (err) {
-        console.error(err);
-        return;
-      } else {
-        $('.beer-list').html("You've Successfully Updated Beer, " + beerid + "Please Press Get Beer List To See Updated Results!");
-
-        // console.log(data);
-        // $.each(data.beers, function(index, element) {
-        //   $('.beer-list').prepend("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + element.style + ' ' + element.quantity + '         ' + "ID: " + element.id + "</li>");
-        // });
-      }
-    });
-  });
-
-      // TODO: Create function that changes location values
-
-  $("#get-beer").on('click', function(e) {
-    e.preventDefault();
-    $('.beer-list').html('');
-    var token = $('.token').val();
-    var data = [];
-    on_tap_api.get_beers(token, function(err, data) {
-      if (err) {
-        console.log(err);
-        return;
-      } else {
-        $('#beers').show();
-        $.each(data.beers, function(index, element) {
-          $('.beer-list').append("<li> Beer: " + element.name + '   ' + "Brewery: " + element.brewery + '         ' + "Style: " + ' ' + element.style + ' ' + "Quantity: " + element.quantity +'         ' + "ID: " + element.id + "</li>");
-          console.log(element);
-          // console.log("Get data: " + data);
-        });
-      }
-    });
-  });
-
-  $("#delete-beer").on('submit', function(e) {
-    e.preventDefault();
-    var token = $('.token').val();
-    var beerid = $('#delete-beer > input[name="beer-id"]').val();
+    var token = authCreds.token;
+    var beerid = $(this).data("id");
     console.log(beerid);
     on_tap_api.delete_beer(token, beerid, function(err, data) {
       if (err) {
@@ -152,13 +122,67 @@ $(document).ready(function() {
         return;
       } else {
         console.log(data);
-    $('#delete-beer').each(function(){
-      this.reset();
-    });
-    $('.beer-list').html("You've Successfully Deleted Beer " + beerid + ", Please Press Get Beer List To See Updated Results!");
+        getBeerCb();
+    }
+  });
+  });
+
+// allows users to bring up editable fields
+  $('#beers').on("click", 'button[data-type="edit"]', function(e) {
+    e.preventDefault();
+    var token = authCreds.token;
+    var beerd = $(this).data("id");
+
+    $(e.target).parent().parent().children().children(".beerstatic").hide();
+    $(e.target).parent().parent().children().children(".beeredit").show();
+  });
+
+
+// allows user to commit new or change values
+  $("#beers").on('click', 'button[data-type="commit"]', function(e) {
+    e.preventDefault();
+    var token = authCreds.token;
+    var beerid = $(this).data("id");
+
+    var diff_beer = {
+      beer: {
+      name: $('[data-field=name][data-id='+ beerid +']').val(),
+      brewery: $('[data-field=brewery][data-id='+ beerid +']').val(),
+      style: $('[data-field=style][data-id='+ beerid +']').val(),
+      quantity: $('[data-field=quantity][data-id='+ beerid +']').val()
+    }
+  };
+
+  on_tap_api.change_beer(token, beerid, diff_beer, function(err, data) {
+      if (err) {
+        console.error(err);
+        return;
+      } else {
+        getBeerCb();
       }
     });
-  });
+
+});
+
+// a little helper so that the new list is automatically brought up after any interaction
+
+  var getBeerCb = function (){
+    $('#beers').html('');
+    var token = authCreds.token;
+    var id = authCreds.id;
+    on_tap_api.get_beers(token, function(err, data) {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        console.log(data);
+        $('#beers').show();
+        var template = Handlebars.compile($("#beer-index").html());
+          var newHTML = beerIndexTemplate({beers: data.beers});
+        $('#beers').html(newHTML);
+      }
+    });
+  };
 
 }); // End of Document Ready
 
