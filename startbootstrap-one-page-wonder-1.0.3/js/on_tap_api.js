@@ -1,5 +1,5 @@
 var on_tap_api = {
-  url: 'http://localhost:3000',
+  url: 'https://obscure-fjord-2393.herokuapp.com',
 
   ajax: function (config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
